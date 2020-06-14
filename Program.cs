@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+
+namespace LinqSql
+{
+    class Program
+    {
+        const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Projetos\\LinqSql\\basededados\\LinqSql.mdf; Integrated Security = True; Connect Timeout = 30";
+        private static SqlConnection _connection;
+        const int quantidadeDeRegistros = 50;
+        private static Random _random;
+
+        static void Main(string[] args)
+        {
+            _connection = new SqlConnection(connectionString);
+            _connection.Open();
+
+            TestarLeituraDeBanco();
+
+            Console.WriteLine("início da execução");
+
+            _random = new Random();
+
+            var lista = CriarListaGigante();
+
+            ExecutarExemplos(lista);
+
+            Console.WriteLine("fim da execução");
+
+            _connection.Close();
+        }
+
+        private static void TestarLeituraDeBanco()
+        {
+            var command = new SqlCommand("select * from Pedido", _connection);
+            var result = command.ExecuteReader();
+            var pedido = result.NextResult();
+        }
+
+        private static IList<Pedido> CriarListaGigante()
+        {
+            IList<Pedido> pedidos = new List<Pedido>();
+            for (int i = 1; i < quantidadeDeRegistros; i++)
+            {
+                string descricao = $"Pedido {i.ToString().PadLeft(2, '0')}";
+                int quantidadeItens = _random.Next(1, 30);
+                int quantidadeItensRetirados = _random.Next(0, 30);
+                
+                Pedido pedido = new Pedido(descricao, quantidadeItens, quantidadeItensRetirados);
+
+                pedidos.Add(pedido);
+            }
+            return pedidos;
+        }
+
+        private static void ExecutarExemplos(IList<Pedido> lista)
+        {
+            //TesteConsulta(lista);
+            //TesteComToList(lista);
+            //TesteComToArray(lista);
+            //TesteComCount(lista);
+            //TesteComDoisCounts(lista);
+            //TesteComDoisCountsEToList(lista);
+            //TesteComFirstOrDefault(lista);
+            //TesteComFirstOrDefaultEToList(lista);
+            TesteComForEach(lista);
+        }
+
+        private static void TesteConsulta(IList<Pedido> lista)
+        {
+            var consulta = lista.Where(x => x.PedidoFinalizado());
+        }
+
+        private static void TesteComToList(IList<Pedido> lista)
+        {
+            var consulta = lista.Where(x => x.PedidoFinalizado()).ToList();
+        }
+
+        private static void TesteComToArray(IList<Pedido> lista)
+        {
+            var consulta = lista.Where(x => x.PedidoFinalizado()).ToArray();
+        }
+
+        private static void TesteComCount(IList<Pedido> lista)
+        {
+            var consulta = lista.Where(x => x.PedidoFinalizado()).Count();
+        }
+
+        private static void TesteComDoisCounts(IList<Pedido> lista)
+        {
+            var consulta = lista.Where(x => x.PedidoFinalizado());
+            Console.WriteLine("- Temos {0} registros", consulta.Count());
+            Console.WriteLine("********");
+            Console.WriteLine("- Temos {0} registros", consulta.Count());
+        }
+
+        private static void TesteComDoisCountsEToList(IList<Pedido> lista)
+        {
+            var consulta = lista.Where(x => x.PedidoFinalizado()).ToList();
+            Console.WriteLine("- Temos {0} registros", consulta.Count());
+            Console.WriteLine("********");
+            Console.WriteLine("- Temos {0} registros", consulta.Count());
+        }
+
+        private static void TesteComFirstOrDefault(IList<Pedido> lista)
+        {
+            var consulta = lista.Where(x => x.PedidoFinalizado()).FirstOrDefault();
+        }
+
+        private static void TesteComFirstOrDefaultEToList(IList<Pedido> lista)
+        {
+            var consulta = lista.Where(x => x.PedidoFinalizado()).ToList().FirstOrDefault();
+        }
+
+        private static void TesteComForEach(IList<Pedido> lista)
+        {
+            var consulta = lista.Where(x => x.PedidoFinalizado());
+
+            foreach (var pedido in consulta)
+            {
+                Console.WriteLine("Iterei no foreach");
+            }
+        }
+    }
+}
