@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 
 namespace LinqSql
 {
     class Program
     {
-        const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Projetos\\LinqSql\\basededados\\LinqSql.mdf; Integrated Security = True; Connect Timeout = 30";
-        private static SqlConnection _connection;
-        const int quantidadeDeRegistros = 50;
+        const int quantidadeDeRegistros = 50000;
         private static Random _random;
 
         static void Main(string[] args)
         {
-            _connection = new SqlConnection(connectionString);
-            _connection.Open();
-
-            TestarLeituraDeBanco();
-
-            Console.WriteLine("início da execução");
+            var watch = new Stopwatch();
+            watch.Start();
+            //Console.WriteLine("---- INÍCIO DA EXECUÇÃO");
 
             _random = new Random();
 
@@ -27,16 +22,8 @@ namespace LinqSql
 
             ExecutarExemplos(lista);
 
-            Console.WriteLine("fim da execução");
-
-            _connection.Close();
-        }
-
-        private static void TestarLeituraDeBanco()
-        {
-            var command = new SqlCommand("select * from Pedido", _connection);
-            var result = command.ExecuteReader();
-            var pedido = result.NextResult();
+            watch.Stop();
+            Console.WriteLine("---- FIM DA EXECUÇÃO: {0}", watch.ElapsedMilliseconds);
         }
 
         private static IList<Pedido> CriarListaGigante()

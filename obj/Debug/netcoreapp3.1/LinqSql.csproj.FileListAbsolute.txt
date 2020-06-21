@@ -30,3 +30,4 @@ D:\Projetos\LinqSql\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 D:\Projetos\LinqSql\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Projetos\LinqSql\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Projetos\LinqSql\obj\Debug\netcoreapp3.1\LinqSql.csproj.CopyComplete
+D:\Projetos\LinqSql\obj\Debug\netcoreapp3.1\LinqSql.csprojAssemblyReference.cache
