@@ -454,19 +454,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\milto\\.nuget\\packages\\": {}
+    "C:\\Users\\milton.bastos\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projetos\\LinqSql\\LinqSql.csproj",
+      "projectUniqueName": "C:\\Projetos\\LinqSql\\LinqSql.csproj",
       "projectName": "LinqSql",
-      "projectPath": "D:\\Projetos\\LinqSql\\LinqSql.csproj",
-      "packagesPath": "C:\\Users\\milto\\.nuget\\packages\\",
-      "outputPath": "D:\\Projetos\\LinqSql\\obj\\",
+      "projectPath": "C:\\Projetos\\LinqSql\\LinqSql.csproj",
+      "packagesPath": "C:\\Users\\milton.bastos\\.nuget\\packages\\",
+      "outputPath": "C:\\Projetos\\LinqSql\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\milto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\milton.bastos\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

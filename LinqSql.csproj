@@ -9,19 +9,4 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="LinqSqlDataSet.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LinqSqlDataSet.xsd</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="LinqSqlDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LinqSqlDataSet.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-
 </Project>
